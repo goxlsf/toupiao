@@ -64,31 +64,6 @@
                 </div>
             </div>
         </div>
-        <div class="user-avatar">
-            <form action="/option/vote">
-                投票名称:<br>
-                <input type="text" name="votename" style="width:300px">
-                <br>
-                选项A:<br>
-                <input type="text" name="option" style="width:300px">
-                <br>
-                选项B:<br>
-                <input type="text" name="option" style="width:300px">
-                <br>
-                选项C:<br>
-                <input type="text" name="option" style="width:300px">
-                <br>
-                选项D:<br>
-                <input type="text" name="option" style="width:300px">
-                <br><br>
-                <input type="radio" name="type" value="匿名投票" >匿名投票
-                <input type="radio" name="type" value="非匿名投票" >非匿名投票
-                <br>
-                <input type="date" name="time" style="width:300px">
-                <br>
-                <input type="submit" value="提交">
-            </form>
-        </div>
     </div>
 </div>
 <div class="modal" id="deadAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

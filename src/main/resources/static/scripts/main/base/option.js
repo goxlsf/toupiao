@@ -120,17 +120,21 @@ function operation(value, row, index) {
 
 }
 function submit() {
-
-    var radio = document.getElementsByName("type");
+    var votename = document.getElementsByName("vote")[0].value;
+    var option = new Array();
+    var i=0;
+    $("[name=op]").each(function (){
+        option[i]=$(this).val();
+        i++;
+    });
+    var date = document.getElementsByName("ti")[0].value;
+    var radio = document.getElementsByName("ty");
     for (i=0; i<radio.length; i++) {
         if (radio[i].checked) {
             var type = radio[i].value;
         }
     }
-    var votename = document.getElementsByName("votename")[0].value;
-    var option = document.getElementsByName("option").value;
-    var date = document.getElementsByName("time")[0].value;
-    var url = "vote/submit?votename="+votename+"&&type="+type+"&&date="+date+"option="+option;
+    var url = "option/vote?votename="+votename+"&&type="+type+"&&time="+date+"&&option="+option;
     $('#vote').load(url);
     $('#deadAdd').modal('hide');
     $('#mytable').bootstrapTable('refresh', {

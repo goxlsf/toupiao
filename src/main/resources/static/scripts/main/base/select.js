@@ -127,7 +127,6 @@ function vote() {
             var chose = radio[i].value;
         }
     }
-
     var questionId = document.getElementsByName("questionId")[0].value;
     var user = document.getElementsByName("user")[0].value;
     var url = "vote/chose?que="+chose+"&&questionId="+questionId+"&&user="+user;

@@ -11,25 +11,26 @@
         <div class="modal-body">
 
             投票名称:<br>
-            <input type="text" name="votename" style="width:300px">
+            <input type="text" name="vote" style="width:300px">
             <br>
             选项A:<br>
-            <input type="text" name="option" style="width:300px">
+            <input type="text" name="op" style="width:300px">
             <br>
             选项B:<br>
-            <input type="text" name="option" style="width:300px">
+            <input type="text" name="op" style="width:300px">
             <br>
             选项C:<br>
-            <input type="text" name="option" style="width:300px">
+            <input type="text" name="op" style="width:300px">
             <br>
             选项D:<br>
-            <input type="text" name="option" style="width:300px">
+            <input type="text" name="op" style="width:300px">
             <br><br>
-            <input type="radio" name="type" value="匿名投票" >匿名投票
-            <input type="radio" name="type" value="非匿名投票" >非匿名投票
+            <input type="radio" name="ty" value="匿名投票" >匿名投票
+            <input type="radio" name="ty" value="非匿名投票" >非匿名投票
             <br>
-            <input type="date" name="time" style="width:300px">
+            <input type="date" name="ti" style="width:300px">
             <br>
+        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭
             </button>
