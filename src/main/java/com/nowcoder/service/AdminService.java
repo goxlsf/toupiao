@@ -61,8 +61,7 @@ public class AdminService {
         }
         admin = new Admin();
         admin.setName(username);
-        admin.setSalt(UUID.randomUUID().toString().substring(0,5));
-        admin.setPassword(ToutiaoUtil.MD5(password+admin.getSalt()));
+        admin.setPassword(password);
         adminDAO.addAdmin(admin);
 
         String ticket = addLoginTicket(admin.getId());
@@ -85,8 +84,7 @@ public class AdminService {
             map.put("msgname","用户名不存在");
             return map;
         }
-        if(!ToutiaoUtil.MD5(password+admin
-                .getSalt()).equals(admin.getPassword())){
+        if(!(password).equals(admin.getPassword())){
             map.put("msgpwd","密码不正确");
             return map;
         }

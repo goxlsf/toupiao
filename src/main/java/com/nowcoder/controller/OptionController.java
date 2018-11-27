@@ -77,8 +77,8 @@ public class OptionController {
         }
         return "redirect:/admin";
     }
-    @RequestMapping(path="/vote/alert",method = {RequestMethod.GET, RequestMethod.POST})
-    public String voteAlert(Model model,@RequestParam("id")int queid, @RequestParam("votename") String votename, @RequestParam(value = "type",defaultValue = "0") String type, @RequestParam("time") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date date, @RequestParam("option") String[] option /*, @RequestParam("optionB")String optionB, @RequestParam("optionC")String optionC, @RequestParam("optionD")String optionD*/){
+    @RequestMapping(path="/vote/alter",method = {RequestMethod.GET, RequestMethod.POST})
+    public String voteAlert(Model model,@RequestParam("questionId")int queid, @RequestParam("votename") String votename, @RequestParam(value = "type",defaultValue = "0") String type, @RequestParam("time") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date date, @RequestParam("option") String[] option /*, @RequestParam("optionB")String optionB, @RequestParam("optionC")String optionC, @RequestParam("optionD")String optionD*/){
         Voteoption voteoption = new Voteoption();
         OptionProject optionProject = new OptionProject();
         voteoption.setQuestionName(votename);

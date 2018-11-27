@@ -17,11 +17,11 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px;width: auto">投票名称：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="Name" id="search_name"/>
+                        <input type="text" class="form-control" name="Name" id="search_name" style="width: 200px"/>
                     </div>
 
                     <div class="col-sm-1 col-sm-offset-4">
-                        <button class="btn btn-primary" id="search_btn">查询</button>
+                        <button class="btn btn-primary" id="search_btn" style="text-align: right">查询</button>
                     </div>
                 </div>
             </div>

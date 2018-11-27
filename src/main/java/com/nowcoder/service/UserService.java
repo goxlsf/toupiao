@@ -4,15 +4,13 @@ import com.nowcoder.dao.LoginTicketDAO;
 import com.nowcoder.dao.UserDAO;
 import com.nowcoder.model.LoginTicket;
 import com.nowcoder.model.User;
+import com.nowcoder.model.Voteoption;
 import com.nowcoder.util.ToutiaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by nowcoder on 2016/7/2.
@@ -57,8 +55,7 @@ public class UserService {
         }
         user = new User();
         user.setUserName(username);
-        user.setSalt(UUID.randomUUID().toString().substring(0,5));
-        user.setPassWord(ToutiaoUtil.MD5(password+user.getSalt()));
+        user.setPassWord(password);
         userDAO.addUser(user);
 
         String ticket = addLoginTicket(user.getId());
@@ -81,8 +78,7 @@ public class UserService {
             map.put("msgname","用户名不存在");
             return map;
         }
-        if(!ToutiaoUtil.MD5(password+user
-        .getSalt()).equals(user.getPassWord())){
+        if(!(password).equals(user.getPassWord())){
             map.put("msgpwd","密码不正确");
             return map;
         }
@@ -92,9 +88,14 @@ public class UserService {
         map.put("ticket",ticket);
         return map;
     }
-
+    public List<User> getLatestUsers(String userName) {
+        return userDAO.selectByuserName(userName);
+    }
     public void logout(String ticket){
         loginTicketDAO.updateStatus(ticket,1);
+    }
+    public void deleteByuserId(int userId){
+        userDAO.deleteById(userId);
     }
 
 }

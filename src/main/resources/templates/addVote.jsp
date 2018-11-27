@@ -25,8 +25,8 @@
             选项D:<br>
             <input type="text" name="op" style="width:300px">
             <br><br>
-            <input type="radio" name="ty" value="匿名投票" >匿名投票
-            <input type="radio" name="ty" value="非匿名投票" >非匿名投票
+            <input type="radio" name="ty" value="0" >匿名投票
+            <input type="radio" name="ty" value="1" >非匿名投票
             <br>
             <input type="date" name="ti" style="width:300px">
             <br>

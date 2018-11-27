@@ -20,7 +20,7 @@
     <script type="text/javascript" src="/scripts/main/base/util.js"></script>
     <script type="text/javascript" src="/scripts/main/base/event.js"></script>
     <script type="text/javascript" src="/scripts/main/base/sort.js"></script>
-    <script type="text/javascript" src="/scripts/main/base/option.js"></script>
+    <script type="text/javascript" src="/scripts/main/base/adminUser.js"></script>
     <script type="text/javascript" src="/scripts/main/base/upload.js"></script>
     <script type="text/javascript" src="/scripts/main/component/component.js"></script>
     <script type="text/javascript" src="/scripts/main/component/popup.js"></script>

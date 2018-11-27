@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface AdminDAO {
     String TABLE_NAME = "admin";
-    String INSET_FIELDS = " UserName, PassWord,salt ";
-    String SELECT_FIELDS = " Adminid, UserName, PassWord, salt ";
+    String INSET_FIELDS = " UserName, PassWord ";
+    String SELECT_FIELDS = " Adminid, UserName, PassWord ";
 
-    @Insert({"insert into ",TABLE_NAME, "(",INSET_FIELDS,")values (#{name},#{password},#{salt})"})
+    @Insert({"insert into ",TABLE_NAME, "(",INSET_FIELDS,")values (#{name},#{password})"})
     int addAdmin(Admin admin);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where Adminid=#{id}"})
@@ -22,7 +22,7 @@ public interface AdminDAO {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where UserName=#{name}"})
     Admin selectByName(String name);
 
-    @Update({"update ", TABLE_NAME, " set PassWord=#{password},salt=#{salt} where Adminid=#{id}"})
+    @Update({"update ", TABLE_NAME, " set PassWord=#{password}, where Adminid=#{id}"})
     void updatePassword(Admin admin);
 
     @Delete({"delete from ", TABLE_NAME, " where Adminid=#{id}"})

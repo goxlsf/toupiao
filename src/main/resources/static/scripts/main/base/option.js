@@ -117,7 +117,33 @@ function operation(value, row, index) {
 
     var htm = "<button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float:left' type='button' class=\"btn btn-primary\"  onclick='Test(\"" + questionId + "\")'>修改</button><button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float: right' type='button' class=\"btn btn-primary\"  onclick='Delete(\"" + questionId + "\")'>删除</button>"
     return htm;
+}
+function alter() {
+    var votename = document.getElementsByName("votename")[0].value;
+    var option = new Array();
+    var i=0;
+    $("[name=option]").each(function (){
+        option[i]=$(this).val();
+        i++;
+    });
+    var date = document.getElementsByName("time")[0].value;
+    var radio = document.getElementsByName("type");
+    var id = document.getElementsByName("qustionId")[0].value;
+    for (i=0; i<radio.length; i++) {
+        if (radio[i].checked) {
+            var type = radio[i].value;
+        }
+    }
 
+    var url = "option/vote/alter?votename="+votename+"&&type="+type+"&&time="+date+"&&option="+option+"&&questionId="+id;
+    $('#vote').load(url);
+    $('#deadMod').modal('hide');
+    $('#mytable').bootstrapTable('refresh', {
+        url : '/index'
+    });
+    $('#mytable1').bootstrapTable('refresh', {
+        url : '/index1'
+    });
 }
 function submit() {
     var votename = document.getElementsByName("vote")[0].value;
@@ -147,7 +173,7 @@ function submit() {
 function AddVote() {
     var url = "vote/add";
     //将id为deadAdd的页面元素作为模态框激活
-    $('#deadAdd').modal();
+    $('#vote').modal();
     //从url加载数据到模态框
     $('#deadAdd').load(url);
     $("#deadAdd").on("hidden.bs.modal", function() {
@@ -170,12 +196,12 @@ function Delete(questionId) {
 function Test(questionId) {
 
     //获取url的值
-    var url = "vote/option?questionId="+questionId;
+    var url = "vote/mod?questionId="+questionId;
     //将id为deadAdd的页面元素作为模态框激活
-    $('#deadAdd').modal();
+    $('#deadMod').modal();
     //从url加载数据到模态框
-    $('#deadAdd').load(url);
-    $("#deadAdd").on("hidden.bs.modal", function() {
+    $('#deadMod').load(url);
+    $("#deadMod").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
 
         $(this).find(".modal-content").children().remove();
@@ -183,7 +209,7 @@ function Test(questionId) {
 }
 function operation1(value, row, index) {
     var questionId = row.questionId;
-    var htm = "<button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float:left' type='button' class=\"btn btn-primary\"  onclick='Test(\"" + questionId + "\")'>修改</button><button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float: right' type='button' class=\"btn btn-primary\"  onclick='Delete(\"" + questionId + "\")'>删除</button>"
+    var htm = "<button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float:left' type='button' class=\"btn btn-primary\"  onclick='Mod(\"" + questionId + "\")'>修改</button><button id=\"vote\" data-toggle=\"modal\" data-remote=\"retire/add/dead\" style='float: right' type='button' class=\"btn btn-primary\"  onclick='Delete(\"" + questionId + "\")'>删除</button>"
     return htm;
 }
 function changeDateFormat(cellval) {

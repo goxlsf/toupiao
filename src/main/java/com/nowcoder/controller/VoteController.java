@@ -53,6 +53,15 @@ public class VoteController {
         return mv;
     }
 
+    @RequestMapping(value = "/mod",method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView mod(@RequestParam(name="questionId", required = false)int queid){
+        Voteoption voteoption = voteService.getOptionByid(queid);
+        List<ViewObject> vos = getNews(queid);
+        ModelAndView mv = new ModelAndView("addMod");
+        mv.addObject("vos",vos);
+        mv.addObject("vote",voteoption);
+        return mv;
+    }
     @RequestMapping(value = "/add",method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView add(){
         ModelAndView mv = new ModelAndView("addVote");
