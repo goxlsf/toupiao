@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,13 +49,25 @@ public class HomeController {
         return vos;
     }
 
-    @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(path = {"/"}, method = {RequestMethod.GET, RequestMethod.POST})
 
     public String index(Model model,@RequestParam(value = "pop",defaultValue = "0") int pop) {
-        model.addAttribute("cou",getNewsForCount(0));
-        model.addAttribute("vos", getNews(0));
-        model.addAttribute("pop",pop);
+
         return "home";
+    }
+
+
+    @RequestMapping("/index")
+    @ResponseBody
+    public List<Voteoption> getUserListPage(String questionName,HttpServletRequest request){
+        List<Voteoption> list = voteService.getVoteListPage(questionName);
+        return list;
+    }
+    @RequestMapping("/index1")
+    @ResponseBody
+    public List<Voteoption> getUserListPage1(String questionName,HttpServletRequest request){
+        List<Voteoption> list = voteService.getVoteListPage1(questionName);
+        return list;
     }
 
 /*

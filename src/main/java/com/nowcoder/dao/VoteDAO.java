@@ -22,7 +22,8 @@ public interface VoteDAO {
     List<Voteoption> selectByquestionId(@Param("questionId") int questionId);
 
     List<Voteoption> selectForCount(@Param("questionId") int questionId);
-
+    List<Voteoption> getVoteListPage1(@Param("questionName") String  questionName);
+    List<Voteoption> getVoteListPage(@Param("questionName") String  questionName);
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where Questionid=#{id}"})
     Voteoption selectById(int id);
 

@@ -5,29 +5,29 @@
     <sql id="table">Voteoption</sql>
     <sql id="selectFields">questionId,questionName,type,time,count
     </sql>
-    <select id="selectByquestionId" resultType="com.nowcoder.model.Voteoption">
+    <select id="getVoteListPage" resultType="com.nowcoder.model.Voteoption">
         SELECT
         <include refid="selectFields"/>
         FROM
         <include refid="table"/>
 
-        <if test="questionId != 0">
-            WHERE questionId = #{questionId}
+        <if test="questionName!=null and questionName !=''">
+            WHERE QuestionName LIKE CONCAT('%',#{questionName},'%')
         </if>
         ORDER BY time DESC
     </select>
-
-    <select id="selectForCount" resultType="com.nowcoder.model.Voteoption">
+    <select id="getVoteListPage1" resultType="com.nowcoder.model.Voteoption">
         SELECT
         <include refid="selectFields"/>
         FROM
         <include refid="table"/>
 
-        <if test="questionId != 0">
-            WHERE questionId = #{questionId}
+        <if test="questionName!=null and questionName !=''">
+            WHERE QuestionName LIKE CONCAT('%',#{questionName},'%')
         </if>
         ORDER BY count DESC
     </select>
+
 </mapper>
 <!--<mapper namespace="com.nowcoder.dao.VoteDAO">
 <sql id="table">Voteoption</sql>

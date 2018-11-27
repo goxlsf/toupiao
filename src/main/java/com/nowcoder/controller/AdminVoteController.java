@@ -25,7 +25,7 @@ public class AdminVoteController {
     @Autowired
     HostHolder hostHolder;
 
-    private List<ViewObject> getNews(int questionId) {
+   /* private List<ViewObject> getNews(int questionId) {
         List<Voteoption> voteList = voteService.getLatestNews(questionId);
 
         List<ViewObject> vos = new ArrayList<>();
@@ -35,11 +35,10 @@ public class AdminVoteController {
             vos.add(vo);
         }
         return vos;
-    }
+    }*/
     @RequestMapping(path = { "/admin"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String admin(Model model, @RequestParam(value = "pop",defaultValue = "0") int pop) {
-        model.addAttribute("vos", getNews(0));
-        model.addAttribute("pop",pop);
+
         return "admin";
     }
 }

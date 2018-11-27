@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +42,21 @@ public class VoteController {
         return vos;
     }
     @RequestMapping(value = "/option",method = {RequestMethod.GET, RequestMethod.POST})
-    public String vote(Model model, @RequestParam(name="questionId", required = false)int queid){
+    public ModelAndView vote(@RequestParam(name="questionId", required = false)int queid){
         Voteoption voteoption = voteService.getOptionByid(queid);
         List<ViewObject> vos = getNews(queid);
+        ModelAndView mv = new ModelAndView("addModel");
+        mv.addObject("vos",vos);
+        mv.addObject("vote",voteoption);
+        /*model.addAttribute("vos", vos);
+        model.addAttribute("vote",voteoption);*/
+        return mv;
+    }
 
-        model.addAttribute("vos", vos);
-        model.addAttribute("vote",voteoption);
-        return "option";
+    @RequestMapping(value = "/add",method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(){
+        ModelAndView mv = new ModelAndView("addVote");
+        return mv;
     }
     @RequestMapping(value = "/alter",method = {RequestMethod.GET, RequestMethod.POST})
     public String alter(Model model, @RequestParam(name="questionId", required = false)int queid){
@@ -60,20 +69,19 @@ public class VoteController {
 
     }
     @RequestMapping(path="/chose",method = {RequestMethod.GET, RequestMethod.POST})
-    public String put(Model model, @RequestParam("que") int optionid, @RequestParam("questionId")int queid,@RequestParam("user")String user){
-        OptionProject optionProject = optionService.selectOption(optionid,queid);
+    public void put(Model model, @RequestParam("que") String optionid, @RequestParam("questionId")String questionId,@RequestParam("user")String user){
+        OptionProject optionProject = optionService.selectOption(Integer.parseInt(optionid),Integer.parseInt(questionId));
         int i = optionProject.getCount()+1;
         optionService.updateCount(i,optionProject.getQuestionId(),optionProject.getOptionId());
 
-        Voteoption vote = voteService.getOptionByid(queid);
+        Voteoption vote = voteService.getOptionByid(Integer.parseInt(questionId));
         int j= vote.getCount()+1;
         voteService.updateCount(j,vote.getQuestionId());
 
         People people = new People();
-        people.setOptionId(optionid);
-        people.setQuestionId(queid);
+        people.setOptionId(Integer.parseInt(optionid));
+        people.setQuestionId(Integer.parseInt(questionId));
         people.setUserName(user);
         peopleService.addPeople(people);
-        return "option?questionId="+optionProject.getQuestionId();
     }
 }

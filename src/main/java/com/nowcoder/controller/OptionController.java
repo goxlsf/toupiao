@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -99,12 +100,11 @@ public class OptionController {
         return "redirect:/admin";
     }
     @RequestMapping(value = "/delete",method = {RequestMethod.GET, RequestMethod.POST})
-    public String delete(Model model, @RequestParam(name="questionId", required = false)int queid){
+    public void delete(Model model, @RequestParam(name="questionId", required = false)int queid){
         optionService.deleteOption(queid);
         voteService.deleteOption(queid);
-
-        return "redirect:/admin";
     }
+
     /*@RequestMapping(value = "/",method = {RequestMethod.GET, RequestMethod.POST})
     public String vote(Model model, @RequestParam(name="questionId", required = false)int queid){
         Voteoption voteoption = voteService.getOptionByid(queid);

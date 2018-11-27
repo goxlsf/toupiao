@@ -26,6 +26,12 @@ public class VoteService {
     public List<Voteoption> getLatestNews(int questionId) {
         return voteDAO.selectByquestionId(questionId);
     }
+    public List<Voteoption> getVoteListPage(String questionName){
+        return voteDAO.getVoteListPage(questionName);
+    }
+    public List<Voteoption> getVoteListPage1(String questionName){
+        return voteDAO.getVoteListPage1(questionName);
+    }
     public Voteoption getOptionByid(int id){
         return voteDAO.selectById(id);
     }
